@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"image/png"
 	"os"
-	"strings"
 
 	"github.com/coreyog/palette/pkg/gen"
 
@@ -16,19 +15,12 @@ import (
 
 // genRefImageCmd represents the genRefImage command
 var genRefImageCmd = &cobra.Command{
-	Use:   "gen KIND",
-	Short: "Used to generate images",
-	Args:  cobra.ExactArgs(1),
+	Use:       "gen KIND",
+	Short:     "Used to generate images",
+	Args:      cobra.OnlyValidArgs,
+	ValidArgs: []cobra.Completion{"ref", "refimg", "refimage"},
 	Run: func(cmd *cobra.Command, args []string) {
-		kind := strings.ToLower(args[0])
-
-		var err error
-
-		switch kind {
-		case "ref", "refimg", "refimage":
-			err = saveRefImage()
-		}
-
+		err := saveRefImage()
 		if err != nil {
 			fmt.Printf("something went wrong: %v\n", err)
 			os.Exit(1)

@@ -12,13 +12,21 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "palette",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "A tool for working with red/blue indexed images",
+	Long: `A tool for working with red/blue indexed images
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Examples:
+
+palette extract IMAGE
+  Extracts the colors from the image and outputs 2 images:
+  the indexed image (aka template), and a palette.
+
+palette apply TEMPLATE PALETTE
+  Uses the templates data to look up colors in the given palette
+  and outputs the image.
+
+palette gen KIND
+  Generates a red/blue reference palette image.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
